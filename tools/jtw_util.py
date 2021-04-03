@@ -6,7 +6,6 @@
 
 from flask import current_app
 import jwt
-
 def generate_jwt(payload,expiry,secret=None):
     """
 
@@ -21,8 +20,7 @@ def generate_jwt(payload,expiry,secret=None):
     if not secret:
         secret = current_app.config['JWT_SECRET']
 
-    token = jwt.encode(_payload,secret,algorithm='HS256')
-
+    token = jwt.decode(_payload,secret,algorithm='HS256')
     return token.decode()
 
 def verify_jwt(token,secret=None):
